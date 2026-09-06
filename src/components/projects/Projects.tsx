@@ -1,135 +1,138 @@
+import { useState } from 'react'
 import { theme } from '../../styles/theme'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
-import { Github, ExternalLink } from 'lucide-react'
+import Reveal from '../ui/Reveal'
+import SectionMark from '../ui/SectionMark'
+import { SiGithub } from 'react-icons/si'
+import { ExternalLink } from 'lucide-react'
 
-// Placeholder projects - Replace with your actual projects
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: 'PROJECT NAME 1',
-    description: 'Brief description of your project. What it does, what technologies it uses, and what problem it solves.',
+    title: 'Project 01',
+    description:
+      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
     tech_stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    github: 'https://github.com/YOUR_USERNAME/project1',
+    github: 'https://github.com/YOUR_USERNAME/project-01',
     demo: 'https://demo-link.com',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80'
   },
   {
     id: 2,
-    title: 'PROJECT NAME 2',
-    description: 'Brief description of your project. What it does, what technologies it uses, and what problem it solves.',
+    title: 'Project 02',
+    description:
+      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
     tech_stack: ['Python', 'FastAPI', 'PostgreSQL'],
-    github: 'https://github.com/YOUR_USERNAME/project2',
+    github: 'https://github.com/YOUR_USERNAME/project-02',
     demo: '',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80'
   },
   {
     id: 3,
-    title: 'PROJECT NAME 3',
-    description: 'Brief description of your project. What it does, what technologies it uses, and what problem it solves.',
-    tech_stack: ['Next.js', 'MongoDB', 'Node.js'],
-    github: 'https://github.com/YOUR_USERNAME/project3',
+    title: 'Project 03',
+    description:
+      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
+    tech_stack: ['Next.js', 'TypeScript', 'Node.js'],
+    github: 'https://github.com/YOUR_USERNAME/project-03',
     demo: 'https://demo-link.com',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80'
   },
   {
     id: 4,
-    title: 'PROJECT NAME 4',
-    description: 'Brief description of your project. What it does, what technologies it uses, and what problem it solves.',
-    tech_stack: ['React', 'Groq', 'LangChain'],
-    github: 'https://github.com/YOUR_USERNAME/project4',
+    title: 'Project 04',
+    description:
+      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
+    tech_stack: ['React', 'Python', 'Docker'],
+    github: 'https://github.com/YOUR_USERNAME/project-04',
     demo: '',
-    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80'
   },
 ]
 
-function ProjectCard({ project, index }: { project: typeof PROJECTS_DATA[0], index: number }) {
-  const { ref, isVisible } = useScrollReveal(0.1, '0px 0px -10% 0px')
-
-  return (
-    <div
-      ref={ref as any}
-      className={`group relative bg-[#141414] border border-cream/10 rounded-xl overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-cream/30 hover:shadow-2xl ${
-        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
-      }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
-    >
-      {/* Project Image */}
-      <div className="relative h-48 sm:h-56 overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />
-      </div>
-
-      {/* Content */}
-      <div className="p-6 flex flex-col gap-4">
-        {/* Title */}
-        <h3 className="text-xl sm:text-2xl font-hn font-bold text-cream tracking-wide group-hover:text-[#39d353] transition-colors duration-300">
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className={`${theme.bodyText} text-sm sm:text-base line-clamp-3`}>
-          {project.description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2">
-          {project.tech_stack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-xs font-hn tracking-wide text-cream/70 bg-cream/5 rounded-full border border-cream/10"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Links */}
-        <div className="flex gap-4 mt-2">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-cream/70 hover:text-cream transition-colors duration-300 text-sm font-hn"
-          >
-            <Github size={18} />
-            <span>Code</span>
-          </a>
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-cream/70 hover:text-[#39d353] transition-colors duration-300 text-sm font-hn"
-            >
-              <ExternalLink size={18} />
-              <span>Live Demo</span>
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function Projects() {
-  const { ref, isVisible } = useScrollReveal(0.1, '0px 0px -10% 0px')
+  const [activeId, setActiveId] = useState<number | null>(null)
 
   return (
-    <section id="projects" className={theme.sectionBase}>
-      <div
-        ref={ref as any}
-        className={`w-full max-w-7xl mx-auto ${isVisible ? theme.fadeUpAnim : 'opacity-0'}`}
-      >
-        <h2 className={`${theme.headingLg} mb-12 sm:mb-16`}>Projects</h2>
+    <section id="projects" className={`${theme.sectionBase} pb-section`}>
+      <div className={theme.container}>
+        <Reveal className="flex items-center gap-4 mb-10 md:mb-12">
+          <SectionMark />
+          <h2 className={theme.headingSection}>Selected Projects</h2>
+        </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-          {PROJECTS_DATA.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+        <div className="flex flex-col">
+          {PROJECTS_DATA.map((project, i) => {
+            const isActive = activeId === project.id
+
+            return (
+              <Reveal key={project.id} delay={i * 80}>
+                <div
+                  className={`border-t border-border py-6 md:py-8 group ${
+                    i === PROJECTS_DATA.length - 1 ? 'border-b' : ''
+                  }`}
+                  onMouseEnter={() => setActiveId(project.id)}
+                  onMouseLeave={() => setActiveId(null)}
+                >
+                  <button
+                    type="button"
+                    className="w-full text-left"
+                    onClick={() => setActiveId(isActive ? null : project.id)}
+                  >
+                    <h4
+                      className={`font-display text-3xl md:text-5xl uppercase leading-none transition-colors duration-300 ${
+                        isActive ? 'text-primary' : 'text-fg group-hover:text-primary'
+                      }`}
+                    >
+                      {project.title}
+                    </h4>
+                  </button>
+
+                  <div
+                    className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isActive
+                        ? 'grid-rows-[1fr] opacity-100 mt-5 md:mt-6'
+                        : 'grid-rows-[0fr] opacity-0 mt-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className={`${theme.bodyText} max-w-2xl mb-4`}>
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech_stack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 text-xs uppercase tracking-wide text-muted border border-border"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-5">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors text-sm"
+                        >
+                          <SiGithub size={18} />
+                          <span>Code</span>
+                        </a>
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors text-sm"
+                          >
+                            <ExternalLink size={18} />
+                            <span>Live Demo</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>

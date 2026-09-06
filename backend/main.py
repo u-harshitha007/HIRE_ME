@@ -25,7 +25,7 @@ load_dotenv()
 # ============================================================
 
 PROFILE_DATA = {
-    "name": "YOUR NAME",
+    "name": "HARSHITHA",
     "role": "YOUR ROLE",
     "email": "your.email@example.com",
     "github": "github.com/yourusername",

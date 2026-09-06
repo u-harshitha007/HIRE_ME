@@ -1,80 +1,39 @@
 import { theme } from '../../styles/theme'
-import { useScrollReveal } from '../../hooks/useScrollReveal'
+import Reveal from '../ui/Reveal'
 
-const BIO_LINES = [
-  "YOUR BIO LINE 1 - Describe your current role or education.",
-  "YOUR BIO LINE 2 - Mention your key skills or what you're passionate about.",
-  "YOUR BIO LINE 3 - Highlight your experience or notable achievements.",
-  "YOUR BIO LINE 4 - Add your interests, certifications, or what you're currently learning."
+const BIO_PARAGRAPHS = [
+  "I'm an AI / GenAI engineer dedicated to turning ideas into creative, reliable products. I specialize in creating seamless experiences between models, data, and the interface.",
+  'My approach focuses on scalable, high-performing work tailored to both people and product goals. By prioritizing performance, clarity, and responsiveness, I aim to ship work that actually holds up.',
 ]
-
-function RevealLine({ text, index }: { text: string, index: number }) {
-  const { ref, isVisible } = useScrollReveal(0.1, '0px 0px -15% 0px')
-  
-  return (
-    <p
-      ref={ref as any}
-      className={`text-2xl sm:text-3xl leading-snug font-hn text-cream ${
-        isVisible ? theme.fadeUpAnim : 'opacity-0'
-      }`}
-      style={{ animationDelay: `${index * 120}ms` }}
-    >
-      {text}
-    </p>
-  )
-}
-
-function StatBlock() {
-  const { ref, isVisible } = useScrollReveal(0.1, '0px 0px -15% 0px')
-
-  return (
-    <div 
-      ref={ref as any}
-      className={`flex flex-col gap-2 ${isVisible ? theme.fadeUpAnim : 'opacity-0'}`}
-    >
-      <span className="font-hn font-bold text-[25vw] sm:text-[14vw] leading-none text-[#B5A245] tracking-tighter">
-        X+
-      </span>
-      <span className={`${theme.bodyText} text-sm sm:text-base max-w-[200px]`}>
-        YOUR KEY ACHIEVEMENT &mdash; Replace with your stat
-      </span>
-    </div>
-  )
-}
-
-function AboutHeading() {
-  const { ref, isVisible } = useScrollReveal()
-  return (
-    <h2 
-      ref={ref as any} 
-      className={`${theme.headingLg} mb-12 sm:mb-24 ${isVisible ? theme.fadeUpAnim : 'opacity-0'}`}
-    >
-      About
-    </h2>
-  )
-}
 
 export default function About() {
   return (
-    <section id="about" className={theme.sectionBase}>
-      <div className="w-full max-w-7xl mx-auto flex flex-col">
-        
-        <AboutHeading />
+    <section className="pb-section" id="about">
+      <div className="container">
+        <Reveal>
+          <h2 className="text-4xl md:text-6xl font-thin mb-20">
+            I believe in building around real people — making sure every system I ship
+            is shaped by actual needs, not assumptions.
+          </h2>
+        </Reveal>
 
-        <div className="flex flex-col sm:flex-row items-start gap-16 sm:gap-10">
-          
-          {/* Left Column: Stat Anchor */}
-          <div className="w-full sm:w-[40%] flex-shrink-0">
-            <StatBlock />
+        <Reveal>
+          <p className="pb-3 border-b border-border text-muted">This is me.</p>
+        </Reveal>
+
+        <div className="grid md:grid-cols-12 mt-9 gap-8">
+          <Reveal className="md:col-span-5">
+            <p className="text-5xl">Hi, I&apos;m HARSHITHA.</p>
+          </Reveal>
+          <div className="md:col-span-7">
+            <div className="text-lg text-muted max-w-[450px] space-y-6">
+              {BIO_PARAGRAPHS.map((paragraph, i) => (
+                <Reveal key={i} delay={i * 80}>
+                  <p>{paragraph}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
-
-          {/* Right Column: Bio Lines */}
-          <div className="w-full flex flex-col gap-8 sm:gap-10 pt-4 sm:pt-8">
-            {BIO_LINES.map((line, i) => (
-              <RevealLine key={i} text={line} index={i} />
-            ))}
-          </div>
-
         </div>
       </div>
     </section>

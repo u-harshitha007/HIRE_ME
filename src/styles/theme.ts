@@ -1,10 +1,17 @@
 export const theme = {
-  sectionBase: "bg-black text-cream font-hn min-h-screen flex flex-col items-center justify-center py-24 px-6 sm:px-10",
-  headingLg: "font-hn font-bold text-[10vh] sm:text-[14vh] tracking-[0.05em] uppercase leading-none",
-  bodyText: "text-cream/80 font-hn leading-relaxed",
-  creamDivider: "h-0.5 bg-cream anim-line",
-  neomorphicButton: "bg-[#141414] rounded-2xl shadow-[6px_6px_12px_#0a0a0a,-6px_-6px_12px_#1e1e1e] hover:shadow-[inset_6px_6px_12px_#0a0a0a,inset_-6px_-6px_12px_#1e1e1e] transition-shadow text-cream font-hn text-sm tracking-wide px-6 py-3",
-  fadeUpAnim: "anim-fade-up",
-  accent: "#39d353",
-  accentSoft: "#39d35399"
-} as const;
+  sectionBase:
+    'relative bg-bg text-fg font-body py-24 md:py-32 px-6 md:px-10 overflow-x-hidden',
+  container: 'w-full max-w-6xl mx-auto',
+  headingDisplay:
+    'font-display font-normal uppercase leading-[0.95] tracking-tight',
+  headingSection: 'font-display text-4xl md:text-5xl uppercase leading-none',
+  labelMuted:
+    'text-muted text-xs md:text-sm uppercase tracking-[0.2em] mb-4 md:mb-6',
+  bodyText: 'text-muted leading-relaxed',
+  bodyLarge: 'text-lg md:text-xl text-muted leading-relaxed',
+  creamDivider: 'h-px bg-border anim-line',
+  linkHover: 'transition-opacity duration-300 hover:opacity-60',
+  fadeUpAnim: 'anim-fade-up',
+  accent: '#eab308',
+  accentSoft: 'rgba(234, 179, 8, 0.15)',
+} as const
