@@ -1,4 +1,3 @@
-import { theme } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 
 const BIO_PARAGRAPHS = [
@@ -8,27 +7,27 @@ const BIO_PARAGRAPHS = [
 
 export default function About() {
   return (
-    <section className="pb-section" id="about">
+    <section className="pb-section pt-16 md:pt-20" id="about">
       <div className="container">
-        <Reveal>
+        <Reveal delay={150}>
           <h2 className="text-4xl md:text-6xl font-thin mb-20">
             I believe in building around real people — making sure every system I ship
             is shaped by actual needs, not assumptions.
           </h2>
         </Reveal>
 
-        <Reveal>
+        <Reveal delay={250}>
           <p className="pb-3 border-b border-border text-muted">This is me.</p>
         </Reveal>
 
         <div className="grid md:grid-cols-12 mt-9 gap-8">
-          <Reveal className="md:col-span-5">
+          <Reveal className="md:col-span-5" delay={350}>
             <p className="text-5xl">Hi, I&apos;m HARSHITHA.</p>
           </Reveal>
           <div className="md:col-span-7">
             <div className="text-lg text-muted max-w-[450px] space-y-6">
               {BIO_PARAGRAPHS.map((paragraph, i) => (
-                <Reveal key={i} delay={i * 80}>
+                <Reveal key={i} delay={450 + i * 100}>
                   <p>{paragraph}</p>
                 </Reveal>
               ))}

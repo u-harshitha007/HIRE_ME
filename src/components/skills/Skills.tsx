@@ -53,7 +53,7 @@ const STACK_DATA: StackCategory[] = [
 function StackRow({ category, index }: { category: StackCategory; index: number }) {
   return (
     <div className="grid sm:grid-cols-12 gap-6 sm:gap-8">
-      <Reveal className="sm:col-span-5" delay={index * 60}>
+      <Reveal className="sm:col-span-5" delay={index * 120}>
         <p className="font-display text-4xl md:text-5xl leading-none text-muted uppercase">
           {category.label}
         </p>
@@ -64,7 +64,7 @@ function StackRow({ category, index }: { category: StackCategory; index: number 
           <Reveal
             key={`${category.label}-${item.name}`}
             className="flex gap-3.5 items-center leading-none group"
-            delay={100 + index * 60 + i * 50}
+            delay={index * 120 + 100 + i * 60}
           >
             <item.Icon
               size={40}
@@ -83,7 +83,7 @@ export default function Skills() {
   return (
     <section id="skills" className={theme.sectionBase}>
       <div className={theme.container}>
-        <Reveal>
+        <Reveal delay={80}>
           <h2 className={`${theme.headingSection} mb-12 md:mb-16`}>My Stack</h2>
         </Reveal>
 
