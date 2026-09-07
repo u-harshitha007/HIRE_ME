@@ -1,15 +1,15 @@
-import { theme } from '../../styles/theme'
+import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 
 export default function Education() {
   return (
     <section id="education" className={theme.sectionBase}>
       <div className={theme.container}>
-        <Reveal>
+        <Reveal delay={ANIMATION_TIMING.revealDelay}>
           <h2 className={`${theme.headingSection} mb-12 md:mb-16`}>Education</h2>
         </Reveal>
 
-        <Reveal delay={80}>
+        <Reveal delay={ANIMATION_TIMING.revealDelay + ANIMATION_TIMING.revealStagger}>
           <div className="border-t border-border pt-10">
             <h3 className="font-display text-3xl md:text-5xl uppercase leading-none">
               YOUR UNIVERSITY NAME

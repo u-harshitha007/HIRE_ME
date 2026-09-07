@@ -1,4 +1,4 @@
-import { theme } from '../../styles/theme'
+import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 import {
   SiReact,
@@ -51,9 +51,11 @@ const STACK_DATA: StackCategory[] = [
 ]
 
 function StackRow({ category, index }: { category: StackCategory; index: number }) {
+  const baseDelay = ANIMATION_TIMING.revealDelay + index * ANIMATION_TIMING.revealStagger * 2
+  
   return (
     <div className="grid sm:grid-cols-12 gap-6 sm:gap-8">
-      <Reveal className="sm:col-span-5" delay={index * 120}>
+      <Reveal className="sm:col-span-5" delay={baseDelay}>
         <p className="font-display text-4xl md:text-5xl leading-none text-muted uppercase">
           {category.label}
         </p>
@@ -64,12 +66,12 @@ function StackRow({ category, index }: { category: StackCategory; index: number 
           <Reveal
             key={`${category.label}-${item.name}`}
             className="flex gap-3.5 items-center leading-none group"
-            delay={index * 120 + 100 + i * 60}
+            delay={baseDelay + ANIMATION_TIMING.revealStagger + i * 50}
           >
             <item.Icon
               size={40}
               color={item.color}
-              className="shrink-0 transition-transform duration-300 group-hover:scale-110"
+              className="shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
             />
             <span className="text-xl md:text-2xl capitalize text-fg">{item.name}</span>
           </Reveal>
@@ -83,11 +85,11 @@ export default function Skills() {
   return (
     <section id="skills" className={theme.sectionBase}>
       <div className={theme.container}>
-        <Reveal delay={80}>
+        <Reveal delay={ANIMATION_TIMING.revealDelay}>
           <h2 className={`${theme.headingSection} mb-12 md:mb-16`}>My Stack</h2>
         </Reveal>
 
-        <div className="space-y-16 md:space-y-20">
+        <div className="space-y-14 md:space-y-18">
           {STACK_DATA.map((category, index) => (
             <StackRow key={category.label} category={category} index={index} />
           ))}

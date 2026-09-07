@@ -1,6 +1,25 @@
+// Animation timing constants for consistent feel
+export const ANIMATION_TIMING = {
+  // Reveal animation durations
+  revealDuration: 900, // ms - main reveal animation
+  revealStagger: 80, // ms - delay between staggered items
+  revealDelay: 120, // ms - base delay for sections
+  
+  // Intersection Observer settings
+  threshold: 0.05, // trigger earlier for smoother reveals
+  rootMargin: '0px 0px -8% 0px', // less aggressive margin
+  
+  // Hover/interaction transitions
+  hoverDuration: 500, // ms - smoother hover transitions
+  
+  // Easing functions
+  easeSmooth: 'cubic-bezier(0.22, 1, 0.36, 1)', // smooth out
+  easeExpo: 'cubic-bezier(0.76, 0, 0.24, 1)', // expo
+} as const
+
 export const theme = {
   sectionBase:
-    'relative bg-bg text-fg font-body py-24 md:py-32 px-6 md:px-10 overflow-x-hidden',
+    'relative bg-bg text-fg font-body py-20 md:py-28 px-6 md:px-10 overflow-x-hidden',
   container: 'w-full max-w-6xl mx-auto',
   headingDisplay:
     'font-display font-normal uppercase leading-[0.95] tracking-tight',

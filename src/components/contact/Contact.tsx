@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { theme } from '../../styles/theme'
+import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 
 const contactSchema = z.object({
@@ -21,7 +21,7 @@ function ContactLink({ label, value, href }: { label: string; value: string; hre
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-fg text-lg md:text-xl hover:underline transition-opacity hover:opacity-70"
+        className="text-fg text-lg md:text-xl hover:underline transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-70"
       >
         {value}
       </a>
@@ -68,20 +68,20 @@ export default function Contact() {
   }, [status])
 
   const inputClasses =
-    'w-full bg-transparent border-b border-border text-fg text-lg py-4 focus:outline-none focus:border-primary transition-colors duration-300 placeholder:text-muted/60'
+    'w-full bg-transparent border-b border-border text-fg text-lg py-4 focus:outline-none focus:border-primary transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] placeholder:text-muted/60'
 
   return (
     <section id="contact" className={`${theme.sectionBase} pb-20 md:pb-28`}>
       <div className={`${theme.container} grid md:grid-cols-12 gap-12 md:gap-16`}>
         <div className="md:col-span-5 flex flex-col gap-10">
-          <Reveal>
+          <Reveal delay={ANIMATION_TIMING.revealDelay}>
             <h2 className={`${theme.headingSection} mb-4`}>Get in Touch</h2>
             <p className={theme.bodyLarge}>
               Have a project or opportunity in mind? Let&apos;s connect.
             </p>
           </Reveal>
 
-          <Reveal delay={100} className="flex flex-col gap-8">
+          <Reveal delay={ANIMATION_TIMING.revealDelay + ANIMATION_TIMING.revealStagger} className="flex flex-col gap-8">
             <ContactLink
               label="Email"
               value="your.email@example.com"
@@ -100,7 +100,7 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        <Reveal delay={150} className="md:col-span-7">
+        <Reveal delay={ANIMATION_TIMING.revealDelay + ANIMATION_TIMING.revealStagger * 2} className="md:col-span-7">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
             <div className="flex flex-col gap-2">
               <input
@@ -145,7 +145,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'pending'}
-                className="h-12 px-8 inline-flex items-center uppercase font-display tracking-widest bg-primary text-black transition-all duration-300 hover:bg-fg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-12 px-8 inline-flex items-center uppercase font-display tracking-widest bg-primary text-black transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-fg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === 'pending' ? 'Sending...' : 'Send Message'}
               </button>

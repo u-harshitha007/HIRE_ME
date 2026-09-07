@@ -22,12 +22,12 @@ function HeroChevron() {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" className="relative overflow-hidden bg-bg">
       <HeroChevron />
 
       <div className="container h-[100svh] min-h-[530px] max-md:pb-10 flex justify-between items-center max-md:flex-col">
         <div className="max-md:grow max-md:flex flex-col justify-center items-start max-w-[544px]">
-          <h1 className="slide-up-and-fade leading-[.95] text-6xl sm:text-[80px] font-display uppercase">
+          <h1 className="slide-up-and-fade leading-[.95] text-6xl sm:text-[80px] font-display uppercase" style={{ animationDelay: '2.5s' }}>
             <span className="text-primary">GenAI</span>
             <br />
             <span className="ml-4">Engineer</span>
@@ -35,7 +35,7 @@ export default function Hero() {
 
           <p
             className="slide-up-and-fade mt-6 text-lg text-muted max-w-lg"
-            style={{ animationDelay: '0.12s' }}
+            style={{ animationDelay: '2.65s' }}
           >
             Hi! I&apos;m{' '}
             <span className="hero-name" tabIndex={0}>
@@ -48,7 +48,7 @@ export default function Hero() {
           <a
             href="#contact"
             className="relative overflow-hidden mt-9 h-12 px-8 inline-flex justify-center items-center text-base md:text-lg uppercase font-display tracking-widest bg-primary text-black group slide-up-and-fade"
-            style={{ animationDelay: '0.22s' }}
+            style={{ animationDelay: '2.8s' }}
           >
             <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-full group-hover:top-0 transition-all duration-500 scale-150" />
             <span className="z-[1]">Contact Me</span>
@@ -60,7 +60,7 @@ export default function Hero() {
             <div
               key={stat.label}
               className="slide-up-and-fade"
-              style={{ animationDelay: `${0.16 + i * 0.1}s` }}
+              style={{ animationDelay: `${2.7 + i * 0.08}s` }}
             >
               <h5 className="text-3xl sm:text-4xl font-display text-primary mb-1.5 uppercase">
                 {stat.value}

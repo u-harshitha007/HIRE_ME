@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { theme } from '../../styles/theme'
+import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 import SectionMark from '../ui/SectionMark'
 import { SiGithub } from 'react-icons/si'
@@ -48,9 +48,9 @@ export default function Projects() {
   const [activeId, setActiveId] = useState<number | null>(null)
 
   return (
-    <section id="projects" className={`${theme.sectionBase} pb-section`}>
+    <section id="projects" className={`${theme.sectionBase} pb-20 md:pb-28`}>
       <div className={theme.container}>
-        <Reveal className="flex items-center gap-4 mb-10 md:mb-12">
+        <Reveal className="flex items-center gap-4 mb-10 md:mb-12" delay={ANIMATION_TIMING.revealDelay}>
           <SectionMark />
           <h2 className={theme.headingSection}>Selected Projects</h2>
         </Reveal>
@@ -60,7 +60,7 @@ export default function Projects() {
             const isActive = activeId === project.id
 
             return (
-              <Reveal key={project.id} delay={i * 80}>
+              <Reveal key={project.id} delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger}>
                 <div
                   className={`border-t border-border py-6 md:py-8 group ${
                     i === PROJECTS_DATA.length - 1 ? 'border-b' : ''
@@ -74,7 +74,7 @@ export default function Projects() {
                     onClick={() => setActiveId(isActive ? null : project.id)}
                   >
                     <h4
-                      className={`font-display text-3xl md:text-5xl uppercase leading-none transition-colors duration-300 ${
+                      className={`font-display text-3xl md:text-5xl uppercase leading-none transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isActive ? 'text-primary' : 'text-fg group-hover:text-primary'
                       }`}
                     >
@@ -83,7 +83,7 @@ export default function Projects() {
                   </button>
 
                   <div
-                    className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    className={`grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       isActive
                         ? 'grid-rows-[1fr] opacity-100 mt-5 md:mt-6'
                         : 'grid-rows-[0fr] opacity-0 mt-0'
@@ -110,7 +110,7 @@ export default function Projects() {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors text-sm"
+                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors duration-300 text-sm"
                         >
                           <SiGithub size={18} />
                           <span>Code</span>
@@ -120,7 +120,7 @@ export default function Projects() {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors text-sm"
+                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors duration-300 text-sm"
                           >
                             <ExternalLink size={18} />
                             <span>Live Demo</span>
