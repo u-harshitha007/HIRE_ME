@@ -19,15 +19,15 @@ export const ANIMATION_TIMING = {
 
 export const theme = {
   sectionBase:
-    'relative bg-bg text-fg font-body py-20 md:py-28 px-6 md:px-10 overflow-x-hidden',
+    'relative bg-bg text-fg font-body py-24 md:py-36 lg:py-44 px-6 md:px-10 overflow-x-hidden',
   container: 'w-full max-w-6xl mx-auto',
   headingDisplay:
     'font-display font-normal uppercase leading-[0.95] tracking-tight',
-  headingSection: 'font-display text-4xl md:text-5xl uppercase leading-none',
+  headingSection: 'font-display text-5xl md:text-6xl lg:text-7xl uppercase leading-none tracking-tight',
   labelMuted:
     'text-muted text-xs md:text-sm uppercase tracking-[0.2em] mb-4 md:mb-6',
-  bodyText: 'text-muted leading-relaxed',
-  bodyLarge: 'text-lg md:text-xl text-muted leading-relaxed',
+  bodyText: 'text-muted leading-relaxed text-base md:text-lg',
+  bodyLarge: 'text-xl md:text-2xl text-muted leading-relaxed',
   creamDivider: 'h-px bg-border anim-line',
   linkHover: 'transition-opacity duration-300 hover:opacity-60',
   fadeUpAnim: 'anim-fade-up',

@@ -54,26 +54,26 @@ function StackRow({ category, index }: { category: StackCategory; index: number 
   const baseDelay = ANIMATION_TIMING.revealDelay + index * ANIMATION_TIMING.revealStagger * 2
   
   return (
-    <div className="grid sm:grid-cols-12 gap-6 sm:gap-8">
+    <div className="grid sm:grid-cols-12 gap-8 sm:gap-10">
       <Reveal className="sm:col-span-5" delay={baseDelay}>
-        <p className="font-display text-4xl md:text-5xl leading-none text-muted uppercase">
+        <p className="font-display text-5xl md:text-6xl lg:text-7xl leading-none text-muted uppercase tracking-tight">
           {category.label}
         </p>
       </Reveal>
 
-      <div className="sm:col-span-7 flex gap-x-8 md:gap-x-11 gap-y-6 md:gap-y-9 flex-wrap">
+      <div className="sm:col-span-7 flex gap-x-10 md:gap-x-12 gap-y-8 md:gap-y-10 flex-wrap">
         {category.items.map((item, i) => (
           <Reveal
             key={`${category.label}-${item.name}`}
-            className="flex gap-3.5 items-center leading-none group"
+            className="flex gap-4 items-center leading-none group"
             delay={baseDelay + ANIMATION_TIMING.revealStagger + i * 50}
           >
             <item.Icon
-              size={40}
+              size={44}
               color={item.color}
               className="shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
             />
-            <span className="text-xl md:text-2xl capitalize text-fg">{item.name}</span>
+            <span className="text-xl md:text-2xl lg:text-3xl capitalize text-fg">{item.name}</span>
           </Reveal>
         ))}
       </div>
@@ -86,10 +86,10 @@ export default function Skills() {
     <section id="skills" className={theme.sectionBase}>
       <div className={theme.container}>
         <Reveal delay={ANIMATION_TIMING.revealDelay}>
-          <h2 className={`${theme.headingSection} mb-12 md:mb-16`}>My Stack</h2>
+          <h2 className={`${theme.headingSection} mb-16 md:mb-20 lg:mb-24`}>My Stack</h2>
         </Reveal>
 
-        <div className="space-y-14 md:space-y-18">
+        <div className="space-y-16 md:space-y-20 lg:space-y-24">
           {STACK_DATA.map((category, index) => (
             <StackRow key={category.label} category={category} index={index} />
           ))}

@@ -48,9 +48,9 @@ export default function Projects() {
   const [activeId, setActiveId] = useState<number | null>(null)
 
   return (
-    <section id="projects" className={`${theme.sectionBase} pb-20 md:pb-28`}>
+    <section id="projects" className={`${theme.sectionBase} pb-24 md:pb-36 lg:pb-44`}>
       <div className={theme.container}>
-        <Reveal className="flex items-center gap-4 mb-10 md:mb-12" delay={ANIMATION_TIMING.revealDelay}>
+        <Reveal className="flex items-center gap-4 mb-14 md:mb-18 lg:mb-20" delay={ANIMATION_TIMING.revealDelay}>
           <SectionMark />
           <h2 className={theme.headingSection}>Selected Projects</h2>
         </Reveal>
@@ -62,7 +62,7 @@ export default function Projects() {
             return (
               <Reveal key={project.id} delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger}>
                 <div
-                  className={`border-t border-border py-6 md:py-8 group ${
+                  className={`border-t border-border py-8 md:py-10 lg:py-12 group ${
                     i === PROJECTS_DATA.length - 1 ? 'border-b' : ''
                   }`}
                   onMouseEnter={() => setActiveId(project.id)}
@@ -74,7 +74,7 @@ export default function Projects() {
                     onClick={() => setActiveId(isActive ? null : project.id)}
                   >
                     <h4
-                      className={`font-display text-3xl md:text-5xl uppercase leading-none transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      className={`font-display text-4xl md:text-6xl lg:text-7xl uppercase leading-none tracking-tight transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isActive ? 'text-primary' : 'text-fg group-hover:text-primary'
                       }`}
                     >
@@ -85,34 +85,34 @@ export default function Projects() {
                   <div
                     className={`grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       isActive
-                        ? 'grid-rows-[1fr] opacity-100 mt-5 md:mt-6'
+                        ? 'grid-rows-[1fr] opacity-100 mt-6 md:mt-8'
                         : 'grid-rows-[0fr] opacity-0 mt-0'
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className={`${theme.bodyText} max-w-2xl mb-4`}>
+                      <p className={`${theme.bodyText} max-w-2xl mb-5 md:mb-6`}>
                         {project.description}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2.5 mb-5 md:mb-6">
                         {project.tech_stack.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 text-xs uppercase tracking-wide text-muted border border-border"
+                            className="px-3 py-1.5 text-xs md:text-sm uppercase tracking-wide text-muted border border-border"
                           >
                             {tech}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex gap-5">
+                      <div className="flex gap-6">
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors duration-300 text-sm"
+                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors duration-300 text-sm md:text-base"
                         >
-                          <SiGithub size={18} />
+                          <SiGithub size={20} />
                           <span>Code</span>
                         </a>
                         {project.demo && (
@@ -120,9 +120,9 @@ export default function Projects() {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors duration-300 text-sm"
+                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors duration-300 text-sm md:text-base"
                           >
-                            <ExternalLink size={18} />
+                            <ExternalLink size={20} />
                             <span>Live Demo</span>
                           </a>
                         )}

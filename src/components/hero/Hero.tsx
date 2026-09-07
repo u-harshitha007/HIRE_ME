@@ -25,16 +25,16 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden bg-bg">
       <HeroChevron />
 
-      <div className="container h-[100svh] min-h-[530px] max-md:pb-10 flex justify-between items-center max-md:flex-col">
-        <div className="max-md:grow max-md:flex flex-col justify-center items-start max-w-[544px]">
-          <h1 className="slide-up-and-fade leading-[.95] text-6xl sm:text-[80px] font-display uppercase" style={{ animationDelay: '2.5s' }}>
+      <div className="container h-[100svh] min-h-[650px] max-md:pb-10 flex justify-between items-center max-md:flex-col">
+        <div className="max-md:grow max-md:flex flex-col justify-center items-start max-w-[680px]">
+          <h1 className="slide-up-and-fade leading-[.95] text-[80px] sm:text-[100px] md:text-[120px] lg:text-[140px] font-display uppercase tracking-tighter" style={{ animationDelay: '2.5s' }}>
             <span className="text-primary">GenAI</span>
             <br />
             <span className="ml-4">Engineer</span>
           </h1>
 
           <p
-            className="slide-up-and-fade mt-6 text-lg text-muted max-w-lg"
+            className="slide-up-and-fade mt-8 md:mt-10 text-lg md:text-xl text-muted max-w-[520px] leading-relaxed"
             style={{ animationDelay: '2.65s' }}
           >
             Hi! I&apos;m{' '}
@@ -47,7 +47,7 @@ export default function Hero() {
 
           <a
             href="#contact"
-            className="relative overflow-hidden mt-9 h-12 px-8 inline-flex justify-center items-center text-base md:text-lg uppercase font-display tracking-widest bg-primary text-black group slide-up-and-fade"
+            className="relative overflow-hidden mt-10 md:mt-12 h-12 md:h-14 px-9 md:px-10 inline-flex justify-center items-center text-base md:text-lg uppercase font-display tracking-widest bg-primary text-black group slide-up-and-fade"
             style={{ animationDelay: '2.8s' }}
           >
             <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-full group-hover:top-0 transition-all duration-500 scale-150" />
@@ -55,17 +55,17 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="md:absolute bottom-[10%] right-[4%] flex md:flex-col gap-4 md:gap-8 text-center md:text-right max-md:mt-10 max-md:w-full max-md:flex-row max-md:justify-between">
+        <div className="md:absolute bottom-[8%] right-[4%] flex md:flex-col gap-5 md:gap-10 text-center md:text-right max-md:mt-12 max-md:w-full max-md:flex-row max-md:justify-between">
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
               className="slide-up-and-fade"
               style={{ animationDelay: `${2.7 + i * 0.08}s` }}
             >
-              <h5 className="text-3xl sm:text-4xl font-display text-primary mb-1.5 uppercase">
+              <h5 className="text-4xl sm:text-5xl md:text-6xl font-display text-primary mb-2 uppercase">
                 {stat.value}
               </h5>
-              <p className="text-muted">{stat.label}</p>
+              <p className="text-muted text-base md:text-lg">{stat.label}</p>
             </div>
           ))}
         </div>

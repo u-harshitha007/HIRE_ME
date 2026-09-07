@@ -71,11 +71,11 @@ export default function Contact() {
     'w-full bg-transparent border-b border-border text-fg text-lg py-4 focus:outline-none focus:border-primary transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] placeholder:text-muted/60'
 
   return (
-    <section id="contact" className={`${theme.sectionBase} pb-20 md:pb-28`}>
-      <div className={`${theme.container} grid md:grid-cols-12 gap-12 md:gap-16`}>
-        <div className="md:col-span-5 flex flex-col gap-10">
+    <section id="contact" className={`${theme.sectionBase} pb-24 md:pb-36 lg:pb-44`}>
+      <div className={`${theme.container} grid md:grid-cols-12 gap-14 md:gap-18 lg:gap-20`}>
+        <div className="md:col-span-5 flex flex-col gap-12 md:gap-14">
           <Reveal delay={ANIMATION_TIMING.revealDelay}>
-            <h2 className={`${theme.headingSection} mb-4`}>Get in Touch</h2>
+            <h2 className={`${theme.headingSection} mb-5 md:mb-6`}>Get in Touch</h2>
             <p className={theme.bodyLarge}>
               Have a project or opportunity in mind? Let&apos;s connect.
             </p>
