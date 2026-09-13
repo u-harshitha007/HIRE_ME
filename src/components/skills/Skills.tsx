@@ -6,9 +6,9 @@ function TechnologyGrid({ category, index }: { category: typeof technologyStack[
   const baseDelay = ANIMATION_TIMING.revealDelay + index * ANIMATION_TIMING.revealStagger * 3
   
   return (
-    <div className="border-t border-border pt-10 md:pt-12">
+    <div className="border-t border-border pt-8 md:pt-10">
       <Reveal delay={baseDelay}>
-        <h3 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-10 md:mb-12">
+        <h3 className={`${theme.headingSection} mb-8 md:mb-10`}>
           {category.label}
         </h3>
       </Reveal>
@@ -42,12 +42,12 @@ export default function Skills() {
     <section id="stack" className={theme.sectionBase}>
       <div className={theme.container}>
         <Reveal delay={ANIMATION_TIMING.revealDelay}>
-          <h2 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-16 md:mb-20">
+          <h2 className={`${theme.headingSection} mb-8 md:mb-10`}>
             Tech Stack
           </h2>
         </Reveal>
 
-        <div className="space-y-16 md:space-y-20">
+        <div className="space-y-8 md:space-y-10">
           {technologyStack.map((category, index) => (
             <TechnologyGrid key={category.label} category={category} index={index} />
           ))}

@@ -1,6 +1,6 @@
 const STATS = [
-  { value: '4+', label: 'AI Projects' },
-  { value: '2+', label: 'Years Experience' },
+  { value: '2', label: 'First Place Wins' },
+  { value: '10+', label: 'Projects & Hackathons' },
   { value: 'Open', label: 'To Opportunities' },
 ]
 
@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="container h-[calc(100svh-4rem)] md:h-[calc(100svh-5rem)] min-h-[700px] flex flex-col justify-center py-20">
         <div className="max-w-[900px]">
           <h1 
-            className="slide-up-and-fade leading-[0.9] text-[70px] sm:text-[100px] md:text-[130px] lg:text-[160px] font-display uppercase tracking-tighter mb-8 md:mb-10" 
+            className="slide-up-and-fade leading-[0.9] text-[70px] sm:text-[100px] md:text-[130px] lg:text-[160px] font-display uppercase tracking-tight mb-8 md:mb-10" 
             style={{ animationDelay: '2.5s' }}
           >
             HARSHITHA
@@ -39,7 +39,7 @@ export default function Hero() {
           </p>
 
           <div
-            className="slide-up-and-fade flex flex-wrap gap-4 mb-12 md:mb-16"
+            className="slide-up-and-fade flex flex-wrap gap-4 mb-12 md:mb-14"
             style={{ animationDelay: '2.9s' }}
           >
             <a
@@ -54,6 +54,14 @@ export default function Hero() {
             >
               <span className="z-[1]">Get in Touch</span>
             </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden h-12 md:h-14 px-8 md:px-10 inline-flex justify-center items-center text-sm md:text-base uppercase font-display tracking-wider border border-primary text-primary group transition-all duration-300 hover:bg-primary hover:text-black"
+            >
+              <span className="z-[1]">Resume</span>
+            </a>
           </div>
 
           <div
@@ -61,7 +69,7 @@ export default function Hero() {
             style={{ animationDelay: '3s' }}
           >
             <a
-              href="https://github.com/YOUR_USERNAME"
+              href="https://github.com/u-harshitha007"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-fg transition-colors duration-300 text-sm uppercase tracking-wider"
@@ -70,7 +78,7 @@ export default function Hero() {
             </a>
             <span className="text-border">|</span>
             <a
-              href="https://www.linkedin.com/in/YOUR_USERNAME/"
+              href="https://www.linkedin.com/in/u-harshitha007"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-fg transition-colors duration-300 text-sm uppercase tracking-wider"

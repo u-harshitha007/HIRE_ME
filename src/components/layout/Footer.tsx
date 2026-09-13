@@ -2,9 +2,9 @@ import { ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/YOUR_USERNAME' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/YOUR_USERNAME/' },
-  { label: 'Email', href: 'mailto:your.email@example.com' },
+  { label: 'GitHub', href: 'https://github.com/u-harshitha007' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/u-harshitha007' },
+  { label: 'Email', href: 'mailto:harshithauppar203@gmail.com' },
 ]
 
 export default function Footer() {

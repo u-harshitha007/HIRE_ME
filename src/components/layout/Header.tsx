@@ -8,13 +8,14 @@ const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Stack', href: '#stack' },
+  { label: 'Hackathons', href: '#hackathons' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/YOUR_USERNAME' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/YOUR_USERNAME/' },
+  { label: 'GitHub', href: 'https://github.com/u-harshitha007' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/u-harshitha007' },
 ]
 
 export default function Header() {
@@ -54,16 +55,9 @@ export default function Header() {
           scrolled ? 'bg-bg/95 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
         }`}
       >
-        <div className="container flex items-center justify-between h-16 md:h-20">
-          <a
-            href="#home"
-            className="text-xl md:text-2xl font-display uppercase tracking-tight hover:text-primary transition-colors duration-300"
-          >
-            HARSHITHA
-          </a>
-
+        <div className="container flex items-center justify-end h-16 md:h-20">
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8 mr-4">
             {NAV_LINKS.slice(1).map((link) => (
               <a
                 key={link.href}

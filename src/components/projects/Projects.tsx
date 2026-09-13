@@ -9,12 +9,10 @@ export default function Projects() {
     <section id="projects" className={`${theme.sectionBase}`}>
       <div className={theme.container}>
         <Reveal delay={ANIMATION_TIMING.revealDelay}>
-          <h2 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-16 md:mb-20">
-            Selected Projects
-          </h2>
+          <h2 className={`${theme.headingSection} mb-8 md:mb-10`}>Selected Projects</h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
           {projects.map((project, i) => (
             <Reveal
               key={project.id}
