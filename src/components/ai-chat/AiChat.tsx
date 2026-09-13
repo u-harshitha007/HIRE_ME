@@ -6,7 +6,7 @@ interface Message {
   content: string
 }
 
-const API_URL = 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function AiChat() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +14,7 @@ export default function AiChat() {
     {
       role: 'assistant',
       content:
-        "Hi! I'm an AI assistant for this portfolio. Ask me anything about HARSHITHA's skills, experience, projects, or background!",
+        "Hi! I'm HARSHITHA's AI assistant. Ask me anything about her skills, experience, projects, or background!",
     },
   ])
   const [input, setInput] = useState('')
@@ -79,12 +79,12 @@ export default function AiChat() {
             ? 'size-12 rounded-full bg-[#262626] text-fg'
             : 'h-12 px-5 rounded-[30px] bg-fg text-bg hover:scale-105'
         }`}
-        aria-label={isOpen ? 'Close AI Chat' : 'Open AI Chat'}
+        aria-label={isOpen ? 'Close AI Chat' : 'Ask AI'}
       >
         {isOpen ? (
           <X size={20} />
         ) : (
-          <span className="text-sm font-semibold tracking-wide">Ask AI</span>
+          <span className="text-sm font-semibold tracking-wide">Ask Harshitha's AI</span>
         )}
       </button>
 

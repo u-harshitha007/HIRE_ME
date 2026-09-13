@@ -1,36 +1,47 @@
 import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
-
-const EXPERIENCE_DATA = [
-  {
-    company: 'Company Name One',
-    role: 'Role Title One',
-    period: 'Month Year — Present',
-  },
-  {
-    company: 'Company Name Two',
-    role: 'Role Title Two',
-    period: 'Month Year — Month Year',
-  },
-]
+import { experiences } from '../../data/experience'
 
 export default function Experience() {
   return (
     <section id="experience" className={theme.sectionBase}>
       <div className={theme.container}>
         <Reveal delay={ANIMATION_TIMING.revealDelay}>
-          <h2 className={`${theme.headingSection} mb-16 md:mb-20 lg:mb-24`}>My Experience</h2>
+          <h2 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-16 md:mb-20">
+            Experience
+          </h2>
         </Reveal>
 
-        <div className="grid gap-14 md:gap-16 lg:gap-20">
-          {EXPERIENCE_DATA.map((item, i) => (
-            <Reveal key={item.company} delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger}>
+        <div className="space-y-16 md:space-y-20">
+          {experiences.map((item, i) => (
+            <Reveal key={i} delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger}>
               <div className="group border-t border-border pt-10 md:pt-12 transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/40">
-                <p className="text-xl md:text-2xl text-muted mb-3 md:mb-4">{item.company}</p>
-                <p className="font-display text-5xl md:text-6xl lg:text-7xl leading-none mb-3 md:mb-4 uppercase tracking-tight transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-primary">
-                  {item.role}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-light mb-2 transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-primary">
+                      {item.role}
+                    </h3>
+                    <p className="text-xl md:text-2xl text-muted">{item.company}</p>
+                  </div>
+                  <p className="text-sm md:text-base text-muted uppercase tracking-wider md:text-right">
+                    {item.period}
+                  </p>
+                </div>
+
+                <p className="text-base md:text-lg text-muted leading-relaxed mb-6 max-w-3xl">
+                  {item.description}
                 </p>
-                <p className="text-lg md:text-xl text-muted">{item.period}</p>
+
+                <div className="flex flex-wrap gap-2.5">
+                  {item.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 text-xs md:text-sm text-muted border border-border uppercase tracking-wide"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
           ))}

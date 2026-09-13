@@ -26,58 +26,86 @@ load_dotenv()
 
 PROFILE_DATA = {
     "name": "HARSHITHA",
-    "role": "YOUR ROLE",
+    "role": "AI Engineer / Developer",
+    "tagline": "Building systems and useful products",
     "email": "your.email@example.com",
-    "github": "github.com/yourusername",
-    "linkedin": "linkedin.com/in/yourusername",
+    "github": "github.com/YOUR_USERNAME",
+    "linkedin": "linkedin.com/in/YOUR_USERNAME",
     
     "about": {
-        "summary": "YOUR BIO - A brief description about yourself, your background, and what you do.",
+        "summary": "AI engineer focused on building practical systems. I specialize in creating AI-powered applications and intelligent systems that solve real problems. My work spans machine learning pipelines, natural language processing, and full-stack development. I believe in writing clean code, building scalable systems, and shipping products that people actually use.",
         "education": [
             {
-                "institution": "YOUR UNIVERSITY",
-                "degree": "YOUR DEGREE",
-                "field": "YOUR FIELD OF STUDY",
-                "year": "EXPECTED GRADUATION YEAR"
+                "institution": "Your University",
+                "degree": "Bachelor's/Master's Degree",
+                "field": "Computer Science / AI / Related Field",
+                "year": "Expected YYYY"
             }
         ],
-        "location": "YOUR LOCATION"
+        "location": "Your Location"
     },
     
     "skills": {
-        "programming_languages": ["Python", "JavaScript", "TypeScript"],
-        "frontend": ["React", "Next.js", "Tailwind CSS"],
-        "backend": ["FastAPI", "Node.js", "Express"],
-        "databases": ["MongoDB", "PostgreSQL"],
-        "tools": ["Git", "Docker", "VS Code"],
-        "ai_ml": ["LangChain", "Groq", "OpenAI API"]
+        "ai_ml": ["Python", "PyTorch", "TensorFlow", "Machine Learning", "Deep Learning", "LLMs", "NLP"],
+        "development": ["React", "TypeScript", "JavaScript", "Next.js", "Node.js", "FastAPI"],
+        "tools": ["Git", "Docker", "PostgreSQL", "MongoDB", "AWS"]
     },
     
     "experience": [
         {
-            "title": "YOUR POSITION",
-            "company": "COMPANY NAME",
-            "duration": "START DATE - END DATE",
-            "description": "Brief description of your role and achievements"
+            "title": "AI Engineer / ML Developer",
+            "company": "Tech Company Name",
+            "duration": "Jan 2024 — Present",
+            "description": "Building intelligent systems and machine learning solutions. Working on LLM integration, model deployment, and scalable AI infrastructure.",
+            "technologies": ["Python", "PyTorch", "FastAPI", "Docker", "AWS"]
+        },
+        {
+            "title": "Software Developer",
+            "company": "Previous Company",
+            "duration": "Jun 2023 — Dec 2023",
+            "description": "Developed full-stack applications with focus on performance and user experience. Collaborated with cross-functional teams on product development.",
+            "technologies": ["React", "Node.js", "PostgreSQL", "TypeScript"]
         }
     ],
     
     "projects": [
         {
-            "name": "PROJECT NAME",
-            "description": "Brief description of the project",
-            "tech_stack": ["React", "FastAPI", "MongoDB"],
-            "github": "https://github.com/yourusername/project",
-            "demo": "https://demo-link.com"
+            "name": "AI Portfolio Assistant",
+            "description": "Intelligent chatbot powered by Groq LLM that answers questions about skills, experience, and projects with streaming responses",
+            "tech_stack": ["Python", "FastAPI", "Groq", "React", "TypeScript"],
+            "category": "AI",
+            "github": "https://github.com/YOUR_USERNAME/portfolio-ai"
+        },
+        {
+            "name": "Machine Learning Pipeline",
+            "description": "End-to-end ML pipeline for data preprocessing, model training, and deployment with automated feature engineering",
+            "tech_stack": ["Python", "Scikit-learn", "MLflow", "Docker"],
+            "category": "ML",
+            "github": "https://github.com/YOUR_USERNAME/ml-pipeline"
+        },
+        {
+            "name": "Real-time Data Dashboard",
+            "description": "Interactive dashboard for visualizing real-time data streams with WebSocket integration",
+            "tech_stack": ["React", "TypeScript", "Node.js", "WebSocket"],
+            "category": "Web",
+            "github": "https://github.com/YOUR_USERNAME/dashboard"
+        },
+        {
+            "name": "NLP Text Analyzer",
+            "description": "Natural language processing tool for sentiment analysis, entity recognition, and text classification",
+            "tech_stack": ["Python", "spaCy", "Transformers", "FastAPI"],
+            "category": "AI",
+            "github": "https://github.com/YOUR_USERNAME/nlp-analyzer"
         }
     ],
     
     "achievements": [
-        "YOUR ACHIEVEMENT 1",
-        "YOUR ACHIEVEMENT 2"
+        "Built AI systems processing X requests/day",
+        "Open source contributor to AI/ML projects",
+        "Completed relevant certifications or awards"
     ],
     
-    "interests": ["AI/ML", "Web Development", "Open Source"],
+    "interests": ["AI/ML", "LLM Applications", "System Design", "Open Source"],
     
     "availability": "Open to opportunities"
 }

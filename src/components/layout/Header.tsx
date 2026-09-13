@@ -1,22 +1,33 @@
 import { useState, useEffect } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { X } from 'lucide-react'
 
 const EASE_EXPO = 'cubic-bezier(0.76, 0, 0.24, 1)'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home', dot: 'bg-yellow-500 text-black' },
-  { label: 'About Me', href: '#about', dot: 'bg-blue-500 text-white' },
-  { label: 'Experience', href: '#experience', dot: 'bg-teal-500 text-black' },
-  { label: 'Projects', href: '#projects', dot: 'bg-indigo-500 text-white' },
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'github', href: 'https://github.com/YOUR_USERNAME' },
-  { label: 'linkedin', href: 'https://www.linkedin.com/in/YOUR_USERNAME/' },
+  { label: 'GitHub', href: 'https://github.com/YOUR_USERNAME' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/YOUR_USERNAME/' },
 ]
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? 'hidden' : ''
@@ -37,47 +48,67 @@ export default function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-[4] pointer-events-none">
-        <button
-          type="button"
-          className="group pointer-events-auto size-12 absolute top-5 right-5 md:right-10 z-[2] flex items-center justify-center"
-          onClick={() => setDrawerOpen((v) => !v)}
-          aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={drawerOpen}
-        >
-          <span
-            className={`inline-block w-3/5 h-0.5 rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 md:group-hover:rotate-12 ${
-              drawerOpen ? 'bg-bg' : 'bg-fg'
-            }`}
-            style={{
-              transform: drawerOpen
-                ? 'translate(-50%, 0) rotate(45deg)'
-                : 'translate(-50%, -5px)',
-            }}
-          />
-          <span
-            className={`inline-block w-3/5 h-0.5 rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 md:group-hover:-rotate-12 ${
-              drawerOpen ? 'bg-bg' : 'bg-fg'
-            }`}
-            style={{
-              transform: drawerOpen
-                ? 'translate(-50%, 0) rotate(-45deg)'
-                : 'translate(-50%, 5px)',
-            }}
-          />
-        </button>
-      </div>
+      {/* Sticky Navigation Bar */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+          scrolled ? 'bg-bg/95 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
+        }`}
+      >
+        <div className="container flex items-center justify-between h-16 md:h-20">
+          <a
+            href="#home"
+            className="text-xl md:text-2xl font-display uppercase tracking-tight hover:text-primary transition-colors duration-300"
+          >
+            HARSHITHA
+          </a>
 
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.slice(1).map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm uppercase tracking-wider text-muted hover:text-fg transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="group size-10 lg:size-12 flex items-center justify-center"
+            onClick={() => setDrawerOpen((v) => !v)}
+            aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={drawerOpen}
+          >
+            <span
+              className={`inline-block w-6 h-0.5 rounded-full absolute transition-all duration-300 ${
+                drawerOpen ? 'bg-bg rotate-45' : 'bg-fg -translate-y-1.5'
+              }`}
+            />
+            <span
+              className={`inline-block w-6 h-0.5 rounded-full absolute transition-all duration-300 ${
+                drawerOpen ? 'bg-bg -rotate-45' : 'bg-fg translate-y-1.5'
+              }`}
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Overlay */}
       <div
-        className={`overlay fixed inset-0 z-[2] bg-black/70 transition-all duration-150 ${
+        className={`fixed inset-0 z-[99] bg-black/70 transition-all duration-300 ${
           drawerOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={closeDrawer}
         aria-hidden="true"
       />
 
+      {/* Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transition-transform duration-700 z-[3] overflow-hidden gap-y-14 flex flex-col lg:justify-center py-10 ${
+        className={`fixed top-0 right-0 h-[100dvh] w-[min(450px,calc(100vw-2rem))] transition-transform duration-700 z-[100] overflow-hidden ${
           drawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ transitionTimingFunction: EASE_EXPO }}
@@ -85,69 +116,52 @@ export default function Header() {
         aria-modal="true"
         aria-hidden={!drawerOpen}
       >
-        <div
-          className={`fixed inset-0 scale-150 translate-x-1/2 rounded-[50%] bg-bg-light duration-700 delay-150 -z-[1] ${
-            drawerOpen ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
+        <div className="absolute inset-0 bg-fg" />
 
-        <div className="grow flex md:items-center w-full max-w-[300px] mx-8 sm:mx-auto">
-          <div className="flex gap-10 lg:justify-between max-lg:flex-col w-full">
-            <div className="max-lg:order-2">
-              <p className="text-muted mb-5 md:mb-8">SOCIAL</p>
-              <ul className="space-y-3">
+        <div className="relative h-full flex flex-col p-8 md:p-10">
+          {/* Close Button */}
+          <button
+            onClick={closeDrawer}
+            className="self-end size-10 flex items-center justify-center text-bg hover:text-bg/70 transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+
+          {/* Menu Content */}
+          <div className="flex-1 flex flex-col justify-center">
+            <nav className="space-y-6 mb-12">
+              <p className="text-xs uppercase tracking-wider text-bg/60 mb-4">Menu</p>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeDrawer}
+                  className="block text-3xl md:text-4xl text-bg hover:text-bg/70 transition-colors font-light"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="border-t border-bg/20 pt-8">
+              <p className="text-xs uppercase tracking-wider text-bg/60 mb-4">Connect</p>
+              <div className="space-y-3">
                 {SOCIAL_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={closeDrawer}
-                      className="text-lg capitalize hover:underline text-bg"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeDrawer}
+                    className="block text-lg text-bg hover:text-bg/70 transition-colors"
+                  >
+                    {link.label}
+                  </a>
                 ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-muted mb-5 md:mb-8">MENU</p>
-              <ul className="space-y-3">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={closeDrawer}
-                      className="group text-xl flex items-center gap-3 text-bg"
-                    >
-                      <span
-                        className={`size-3.5 rounded-full flex items-center justify-center group-hover:scale-[200%] transition-all ${link.dot}`}
-                      >
-                        <ArrowUpRight
-                          size={8}
-                          className="scale-0 group-hover:scale-100 transition-all"
-                        />
-                      </span>
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
-          <p className="text-muted mb-4">GET IN TOUCH</p>
-          <a
-            href="#contact"
-            onClick={closeDrawer}
-            className="text-lg capitalize hover:underline text-bg"
-          >
-            your.email@example.com
-          </a>
         </div>
       </div>
     </>

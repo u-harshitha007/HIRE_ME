@@ -1,79 +1,35 @@
 import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiPython,
-  SiFastapi,
-  SiDocker,
-  SiGit,
-  SiPostgresql,
-} from 'react-icons/si'
-import type { IconType } from 'react-icons'
+import { technologyStack } from '../../data/technologies'
 
-type StackItem = { name: string; Icon: IconType; color: string }
-
-type StackCategory = {
-  label: string
-  items: StackItem[]
-}
-
-const STACK_DATA: StackCategory[] = [
-  {
-    label: 'Frontend',
-    items: [
-      { name: 'React.js', Icon: SiReact, color: '#61DAFB' },
-      { name: 'Next.js', Icon: SiNextdotjs, color: '#ffffff' },
-      { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
-      { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
-      { name: 'TailwindCSS', Icon: SiTailwindcss, color: '#06B6D4' },
-    ],
-  },
-  {
-    label: 'Backend',
-    items: [
-      { name: 'Python', Icon: SiPython, color: '#3776AB' },
-      { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
-      { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
-    ],
-  },
-  {
-    label: 'AI & Tools',
-    items: [
-      { name: 'Python', Icon: SiPython, color: '#3776AB' },
-      { name: 'Docker', Icon: SiDocker, color: '#2496ED' },
-      { name: 'Git', Icon: SiGit, color: '#F05032' },
-    ],
-  },
-]
-
-function StackRow({ category, index }: { category: StackCategory; index: number }) {
-  const baseDelay = ANIMATION_TIMING.revealDelay + index * ANIMATION_TIMING.revealStagger * 2
+function TechnologyGrid({ category, index }: { category: typeof technologyStack[0]; index: number }) {
+  const baseDelay = ANIMATION_TIMING.revealDelay + index * ANIMATION_TIMING.revealStagger * 3
   
   return (
-    <div className="grid sm:grid-cols-12 gap-8 sm:gap-10">
-      <Reveal className="sm:col-span-5" delay={baseDelay}>
-        <p className="font-display text-5xl md:text-6xl lg:text-7xl leading-none text-muted uppercase tracking-tight">
+    <div className="border-t border-border pt-10 md:pt-12">
+      <Reveal delay={baseDelay}>
+        <h3 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-10 md:mb-12">
           {category.label}
-        </p>
+        </h3>
       </Reveal>
 
-      <div className="sm:col-span-7 flex gap-x-10 md:gap-x-12 gap-y-8 md:gap-y-10 flex-wrap">
-        {category.items.map((item, i) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-10">
+        {category.technologies.map((tech, i) => (
           <Reveal
-            key={`${category.label}-${item.name}`}
-            className="flex gap-4 items-center leading-none group"
-            delay={baseDelay + ANIMATION_TIMING.revealStagger + i * 50}
+            key={tech.name}
+            className="flex flex-col items-center gap-4 group"
+            delay={baseDelay + ANIMATION_TIMING.revealStagger + i * 40}
           >
-            <item.Icon
-              size={44}
-              color={item.color}
-              className="shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-            />
-            <span className="text-xl md:text-2xl lg:text-3xl capitalize text-fg">{item.name}</span>
+            <div className="relative size-16 md:size-20 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+              <tech.Icon
+                size={48}
+                color={tech.color}
+                className="shrink-0"
+              />
+            </div>
+            <span className="text-sm md:text-base text-center text-muted group-hover:text-fg transition-colors duration-300">
+              {tech.name}
+            </span>
           </Reveal>
         ))}
       </div>
@@ -83,15 +39,17 @@ function StackRow({ category, index }: { category: StackCategory; index: number 
 
 export default function Skills() {
   return (
-    <section id="skills" className={theme.sectionBase}>
+    <section id="stack" className={theme.sectionBase}>
       <div className={theme.container}>
         <Reveal delay={ANIMATION_TIMING.revealDelay}>
-          <h2 className={`${theme.headingSection} mb-16 md:mb-20 lg:mb-24`}>My Stack</h2>
+          <h2 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-16 md:mb-20">
+            Tech Stack
+          </h2>
         </Reveal>
 
-        <div className="space-y-16 md:space-y-20 lg:space-y-24">
-          {STACK_DATA.map((category, index) => (
-            <StackRow key={category.label} category={category} index={index} />
+        <div className="space-y-16 md:space-y-20">
+          {technologyStack.map((category, index) => (
+            <TechnologyGrid key={category.label} category={category} index={index} />
           ))}
         </div>
       </div>

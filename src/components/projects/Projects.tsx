@@ -1,138 +1,89 @@
-import { useState } from 'react'
 import { theme, ANIMATION_TIMING } from '../../styles/theme'
 import Reveal from '../ui/Reveal'
-import SectionMark from '../ui/SectionMark'
+import { projects } from '../../data/projects'
 import { SiGithub } from 'react-icons/si'
 import { ExternalLink } from 'lucide-react'
 
-const PROJECTS_DATA = [
-  {
-    id: 1,
-    title: 'Project 01',
-    description:
-      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
-    tech_stack: ['React', 'TypeScript', 'Tailwind CSS'],
-    github: 'https://github.com/YOUR_USERNAME/project-01',
-    demo: 'https://demo-link.com',
-  },
-  {
-    id: 2,
-    title: 'Project 02',
-    description:
-      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
-    tech_stack: ['Python', 'FastAPI', 'PostgreSQL'],
-    github: 'https://github.com/YOUR_USERNAME/project-02',
-    demo: '',
-  },
-  {
-    id: 3,
-    title: 'Project 03',
-    description:
-      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
-    tech_stack: ['Next.js', 'TypeScript', 'Node.js'],
-    github: 'https://github.com/YOUR_USERNAME/project-03',
-    demo: 'https://demo-link.com',
-  },
-  {
-    id: 4,
-    title: 'Project 04',
-    description:
-      'Placeholder project summary — what it does, the problem it solves, and the technologies involved.',
-    tech_stack: ['React', 'Python', 'Docker'],
-    github: 'https://github.com/YOUR_USERNAME/project-04',
-    demo: '',
-  },
-]
-
 export default function Projects() {
-  const [activeId, setActiveId] = useState<number | null>(null)
-
   return (
-    <section id="projects" className={`${theme.sectionBase} pb-24 md:pb-36 lg:pb-44`}>
+    <section id="projects" className={`${theme.sectionBase}`}>
       <div className={theme.container}>
-        <Reveal className="flex items-center gap-4 mb-14 md:mb-18 lg:mb-20" delay={ANIMATION_TIMING.revealDelay}>
-          <SectionMark />
-          <h2 className={theme.headingSection}>Selected Projects</h2>
+        <Reveal delay={ANIMATION_TIMING.revealDelay}>
+          <h2 className="text-xl md:text-2xl font-display uppercase tracking-wider text-muted mb-16 md:mb-20">
+            Selected Projects
+          </h2>
         </Reveal>
 
-        <div className="flex flex-col">
-          {PROJECTS_DATA.map((project, i) => {
-            const isActive = activeId === project.id
-
-            return (
-              <Reveal key={project.id} delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger}>
-                <div
-                  className={`border-t border-border py-8 md:py-10 lg:py-12 group ${
-                    i === PROJECTS_DATA.length - 1 ? 'border-b' : ''
-                  }`}
-                  onMouseEnter={() => setActiveId(project.id)}
-                  onMouseLeave={() => setActiveId(null)}
-                >
-                  <button
-                    type="button"
-                    className="w-full text-left"
-                    onClick={() => setActiveId(isActive ? null : project.id)}
-                  >
-                    <h4
-                      className={`font-display text-4xl md:text-6xl lg:text-7xl uppercase leading-none tracking-tight transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isActive ? 'text-primary' : 'text-fg group-hover:text-primary'
-                      }`}
-                    >
-                      {project.title}
-                    </h4>
-                  </button>
-
-                  <div
-                    className={`grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isActive
-                        ? 'grid-rows-[1fr] opacity-100 mt-6 md:mt-8'
-                        : 'grid-rows-[0fr] opacity-0 mt-0'
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className={`${theme.bodyText} max-w-2xl mb-5 md:mb-6`}>
-                        {project.description}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
+          {projects.map((project, i) => (
+            <Reveal
+              key={project.id}
+              delay={ANIMATION_TIMING.revealDelay + (i + 1) * ANIMATION_TIMING.revealStagger * 2}
+            >
+              <div className="group border border-border transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/40">
+                {/* Project Image Placeholder */}
+                <div className="aspect-[16/10] bg-gradient-to-br from-border/20 to-border/5 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center px-6">
+                      <p className="text-6xl md:text-7xl font-display text-muted/20 group-hover:text-primary/30 transition-colors duration-500">
+                        _{project.id.toString().padStart(2, '0')}
                       </p>
-
-                      <div className="flex flex-wrap gap-2.5 mb-5 md:mb-6">
-                        {project.tech_stack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1.5 text-xs md:text-sm uppercase tracking-wide text-muted border border-border"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex gap-6">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-muted hover:text-fg transition-colors duration-300 text-sm md:text-base"
-                        >
-                          <SiGithub size={20} />
-                          <span>Code</span>
-                        </a>
-                        {project.demo && (
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-muted hover:text-primary transition-colors duration-300 text-sm md:text-base"
-                          >
-                            <ExternalLink size={20} />
-                            <span>Live Demo</span>
-                          </a>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </div>
-              </Reveal>
-            )
-          })}
+
+                {/* Project Info */}
+                <div className="p-6 md:p-8">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <h3 className="text-2xl md:text-3xl font-light leading-tight group-hover:text-primary transition-colors duration-500">
+                      {project.title}
+                    </h3>
+                    <span className="text-xs text-muted uppercase tracking-wider shrink-0">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  <p className="text-base md:text-lg text-muted leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech_stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 text-xs text-muted border border-border uppercase tracking-wide"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-5">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-muted hover:text-fg transition-colors duration-300 text-sm uppercase tracking-wider"
+                    >
+                      <SiGithub size={18} />
+                      <span>Code</span>
+                    </a>
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-muted hover:text-primary transition-colors duration-300 text-sm uppercase tracking-wider"
+                      >
+                        <ExternalLink size={18} />
+                        <span>Demo</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
