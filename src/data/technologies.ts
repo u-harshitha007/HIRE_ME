@@ -32,6 +32,8 @@ export const technologyStack: TechnologyCategory[] = [
     label: 'AI Systems',
     technologies: [
       { name: 'Python', Icon: SiPython, color: '#3776AB' },
+      { name: 'Generative AI / LLMs', Icon: SiPython, color: '#FFD43B' },
+      { name: 'AI Agents', Icon: SiPython, color: '#00D4AA' },
     ],
   },
   {
